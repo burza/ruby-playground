@@ -24,8 +24,23 @@ class RubyExamples
     rslt = a_new_hash.map do |key, value|
       value.gsub('$1', $1) if Regexp.new(key).match(url)
     end
-    rslt.reject( {|x| x.nil?})
+    rslt.reject {|x| x.nil?}
+  end
+
+  def convert_to_roman(number)
+    roman_numerals = {
+      1 => 'I',
+      5 => 'V',
+      10 => 'X',
+      50 => 'L'
+    }
+
   end
 end
 
 test = RubyExamples.new
+
+puts test.url_rewrite("/article/512")
+puts test.url_rewrite2("/article/512")
+
+puts test.convert_to_roman(5)
