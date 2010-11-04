@@ -1,0 +1,51 @@
+.block
+  .content
+    %h2.title Finde die Zahl
+    .inner
+      %h3= link_to "Restart game", tictactoe_restart_path
+      .container
+        %p
+          Bitte denken Sie sich eine Zahl zwischen 0 u. 100 aus. Ich werde Sie herausfinden...
+        %p
+          Ist Ihre Zahle die
+          =@find_number.status[:value]
+          ?
+        .buttons
+          =link_to "Kleiner", tictactoe_smaler_path, {:class => 'button'}
+          =link_to "Größer", tictactoe_greater_path, {:class => 'button'}
+
+.block
+  .content
+    %h2.title Tic Tac Toe
+    .inner
+      %h3= link_to "Restart game", tictactoe_restart_path
+      %div{:id => "board-container"}
+        %table{:id => "table-board", :class => "table"}
+          %body
+            %tr
+              %td{:class => "imageSpacerGameBoard"}
+                =status_for_game_zone(@game.board,0,0)
+              %td{:class => "imageSpacerGameBoard"}
+                =status_for_game_zone(@game.board,0,1)
+              %td{:class => "imageSpacerGameBoard"}
+                =status_for_game_zone(@game.board,0,2)
+            %tr
+              %td{:class => "imageSpacerGameBoard"}
+                =status_for_game_zone(@game.board,1,0)
+              %td{:class => "imageSpacerGameBoard"}
+                =status_for_game_zone(@game.board,1,1)
+              %td{:class => "imageSpacerGameBoard"}
+                =status_for_game_zone(@game.board,1,2)
+            %tr
+              %td{:class => "imageSpacerGameBoard"}
+                =status_for_game_zone(@game.board,2,0)
+              %td{:class => "imageSpacerGameBoard"}
+                =status_for_game_zone(@game.board,2,1)
+              %td{:class => "imageSpacerGameBoard"}
+                =status_for_game_zone(@game.board,2,2)
+
+      %p{:id => "message"}
+        -if @game.finished?
+          The game is over, please reset to continue.
+        -else
+          Take a move to win the game.
