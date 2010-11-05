@@ -28,6 +28,10 @@ class User
     # open a template file
     # parse the file for keywords
     # render the template with keywords
+    File.open("#{Rails.root}/app/views/users/welcome.txt").each { |line|
+      line.gsub!(/\{\{([a-zA-Z]+)\}\}/, "#{user.name}")
+      puts line
+    }
   end
 
 end
