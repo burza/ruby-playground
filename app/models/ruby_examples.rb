@@ -1,4 +1,4 @@
-class RubyExamples
+module RubyExamples
 
   def url_rewrite(url)
     result = case
@@ -29,18 +29,24 @@ class RubyExamples
 
   def convert_to_roman(number)
     roman_numerals = {
-      1 => 'I',
-      5 => 'V',
-      10 => 'X',
-      50 => 'L'
+      '1' => 'I',
+      '5' => 'V',
+      '10' => 'X',
+      '50' => 'L'
     }
 
+    num_array = number.to_s.split(//)
+
+    roman = ""
+
+    if num_array.size == 1 && roman_numerals.has_key?(num_array[0])
+      roman_numerals[num_array[0]]
+    else
+      "error: cant convert number into roman"
+    end
+  end
+
+  def method_missing(method, *args, &block)
+    puts "error: undefined method '#{method}' for #{self.class}"
   end
 end
-
-test = RubyExamples.new
-
-puts test.url_rewrite("/article/512")
-puts test.url_rewrite2("/article/512")
-
-puts test.convert_to_roman(5)

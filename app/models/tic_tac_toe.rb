@@ -1,4 +1,4 @@
-class TicTacToe
+module TicTacToe
 
   attr_accessor :board
 

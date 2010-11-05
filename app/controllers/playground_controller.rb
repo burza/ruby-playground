@@ -38,7 +38,7 @@ class PlaygroundController < ApplicationController
 
   def set_game
     @find_number = Playground.new(session[:status])
-    @game = TicTacToe.new(session[:board])
+    @game = Playground.new(session[:board])
   end
 
   def set_session
