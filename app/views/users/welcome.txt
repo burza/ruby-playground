@@ -1,1 +1,3 @@
-Hallo, {{USER}}
+Hallo, {{NAME}}. Dude!
+You life in {{COUNTRY}}?
+COOL!!!

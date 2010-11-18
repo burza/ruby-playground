@@ -29,21 +29,27 @@ module RubyExamples
 
   def convert_to_roman(number)
     roman_numerals = {
-      '1' => 'I',
-      '5' => 'V',
-      '10' => 'X',
-      '50' => 'L'
+      50 => "L",
+      10 => "X",
+      5 => "V",
+      1 => "I"
     }
 
-    num_array = number.to_s.split(//)
+    arabic = number.to_i
+    res = ""
 
-    roman = ""
-
-    if num_array.size == 1 && roman_numerals.has_key?(num_array[0])
-      roman_numerals[num_array[0]]
+    if arabic < 50
+      roman_numerals.keys.sort{ |a,b| b <=> a }.each do |n|
+        while arabic >= n
+          arabic = arabic - n
+          res << roman_numerals[n].to_s
+        end
+      end
     else
-      "error: cant convert number into roman"
+      puts "unter 50 bitte"
     end
+
+    return res
   end
 
   def method_missing(method, *args, &block)

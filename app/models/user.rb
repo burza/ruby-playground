@@ -24,12 +24,10 @@ class User
     puts "Cu l8er, #{@name}!"
   end
 
-  def render_template(user)
-    # open a template file
-    # parse the file for keywords
-    # render the template with keywords
-    File.open("#{Rails.root}/app/views/users/welcome.txt").each { |line|
-      line.gsub!(/\{\{([a-zA-Z]+)\}\}/, "#{user.name}")
+  def render_template(template)
+    File.open("#{Rails.root}/app/views/users/#{template}.txt").each { |line|
+      match = line.match(/\{\{([A-Z]+)\}\}/)
+      line.gsub!("{{#{$1}}}", send($1.downcase)) if $1
       puts line
     }
   end
